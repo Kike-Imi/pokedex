@@ -1,0 +1,419 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+:root{
+    --primary-color: #607D8B;
+    --dark-primary-color: #455A64;
+    --light-primary-color: #CFD8DC;
+    --text-icons: #FFFFFF;
+    --primary-text: #212121;
+    --secondary-text: #757575;
+    --divider-color: #BDBDBD;
+    --acent-color: #9E9E9E;
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
+.nav{
+    background-color: var(--dark-primary-color);
+
+    --img1: scale(1);
+    --img2: scale(0);
+
+    border-bottom: solid 1px #000;
+    box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav:has( .dropdown:target ){
+    --img1: scale(0);
+    --img2: scale(1);
+
+    --clip:inset(0 0 0 0);
+}
+
+.nav__container{
+    width: 90%;
+    margin: 0 auto;
+    height: 70px;
+
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-template-areas: "img title";
+    justify-content: space-between;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.nav__title{
+    color: var(--text-icons);
+    grid-area: title;
+}
+
+
+.nav__menu{
+    grid-area: img;
+    position: relative;
+    z-index: 10;
+
+    transform: var(--img1);
+}
+
+.nav__menu--second{
+    transform: var(--img2);
+}
+
+.nav__icon{
+    width: 30px;
+    display: block;
+}
+
+.dropdown{
+    position: absolute;
+    background-color: var(--dark-primary-color);
+    width: 100%;
+    max-width: 300px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 1em;
+    padding-top: 200px;
+
+    display: grid;
+    align-content:center ;
+    gap: 1rem;
+
+    overflow-y: auto;
+
+    border-radius: 0 10px 10px 0;
+    clip-path: var(--clip, inset(0 100% 100% 0));
+    transition: clip-path .5s;
+}
+
+.dropdown__list{
+    list-style: none;
+}
+
+.dropdown__link{
+    color: rgb(184, 187, 191);
+    padding: 1em .7em;
+    text-decoration: none;
+    
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    position: relative;
+    background-color: var(--bg, transparent);
+    border-radius: 6px;
+}
+
+.dropdown__list:has( :checked ){
+    --rows: 1fr;
+    --rotate: rotate(180deg);
+    --bg: #28303B;
+}
+
+.dropdown__check{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.dropdown__arrow{
+    margin-left: auto;
+    transform: var(--rotate, 0);
+    transition: .2s transform;
+}
+
+.dropdown__content{
+    display: grid;
+    grid-template-rows: var(--rows, 0fr);
+    transition: .3s grid-template-rows;
+}
+
+.dropdown__sub{
+    overflow: hidden;
+}
+
+.dropdown__li{
+    width: 85%;
+    list-style: none;
+    margin-left: auto;
+}
+
+.dropdown__anchor{
+    padding: 1em 0;
+    display: block;
+    color: #B6BABE;
+    text-decoration: none;
+}
+
+.dropdown__icon{
+    height: 100%;
+    width: 30px;
+    object-fit: cover;
+}
+
+.main__content{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-bottom: 20px;
+}
+
+.child__content__secition{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.title__content{
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    margin-bottom: 10px;
+
+    color: var(--dark-primary-color);
+}
+
+.button_content{
+    list-style: none;
+    text-decoration: none;
+
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    background-color: var(--primary-color);
+    color: var(--light-primary-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.5);
+}
+
+.card__content{
+    width: 90%;
+    margin-bottom: 10px;
+    height: 70px;
+
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-areas: "link buttons";
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--primary-color);
+    border-radius: 5px;
+
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.5);
+
+}
+
+.card_link{
+    padding-left: 20px;
+    grid-area: link;
+    color: var(--light-primary-color);
+}
+
+.card_link_button{
+    text-decoration: none;
+    color: var(--light-primary-colorr);
+}
+
+.card_buttons_max{
+    display: none;
+    justify-content: flex-end;
+
+    gap: 5px;
+    padding-right: 10px;
+    grid-area: buttons;
+}
+
+.card_buttons_min{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+
+    gap: 5px;
+    padding-right: 10px;
+    grid-area: buttons;
+}
+
+.card_buttons_min_menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.card-buttons-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 70px;
+    height: 35px;
+
+    background-color: var(--dark-primary-color);
+    border-radius: 5px;
+    color: var(--light-primary-color);
+    border: solid 1px var(--primary-color);
+
+    text-decoration: none;
+    font-size: 14px;
+
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (min-width: 700px){
+    .card__content{
+        grid-template-columns: 50% 50%;
+    }
+
+    .card_buttons_max{
+        display: flex;
+    }
+
+    .card_buttons_min{
+        display: none;
+    }
+}
+
+
+/* Estilo base del botón */
+.dropbtn {
+    color: var(--light-primary-color);
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+
+/* Estilo del contenedor del menú desplegable */
+.drop {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo de los enlaces del menú desplegable */
+.drop-content {
+    display: none;
+    position: absolute;
+    background-color: var(--primary-color);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+    z-index: 1;
+    right: 0;
+
+    border-radius: 15px;
+}
+
+.dropbutton{
+    display: flex;
+
+    background-color: var(--primary-color);
+    border: none;
+    height: 100%;
+}
+
+/* Estilo de los enlaces del menú desplegable */
+.drop-content a {
+    color: var(--light-primary-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    list-style: none;
+    text-decoration: none;
+
+    border-bottom: solid 1px var(--dark-primary-color);
+}
+
+/* Cambiar el color de fondo cuando se pasa el cursor sobre los enlaces */
+.drop-content a:hover {
+    background-color: #ddd;
+}
+
+/* Mostrar el menú desplegable cuando se pasa el cursor sobre el botón */
+.drop:hover .drop-content {
+    display: block;
+}
+
+.content-inputs{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    min-height: 100vh;
+}
+
+.content_card_form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content_card_inputs{
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 15px;
+    width: 100%;
+    height: 50%;
+}
+
+.card-form-l{
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.card-form-i{
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+
+    border-radius: 5px;
+    border: solid 1px var(--primary-color);
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.card-form-ta{
+    width: 100%;
+    margin-top: 10px;
+
+    border-radius: 5px;
+    border: solid 1px var(--primary-color);
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.data-content{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
